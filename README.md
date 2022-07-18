@@ -28,6 +28,6 @@ Sign In / Sign Up page interface:
 ### Home (Protected)
 After Successful login:
 
-![home](https://i.ibb.co/mTqfkvV/image.png)
+![home](https://i.ibb.co/SfRQJjX/image.png)
 
 On logout user is logged out and accesing home route will redirect it to login page.
