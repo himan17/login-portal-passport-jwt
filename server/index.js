@@ -4,13 +4,34 @@ require('dotenv').config();
 const userAuthRoute = require('./routes/userAuthRoute');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const passport = require('passport');
+const swaggerUI = require("swagger-ui-express");
+const swaggerJsDoc = require("swagger-jsdoc");
+
+const options = {
+	definition: {
+		openapi: "3.0.0",
+		info: {
+			title: "API",
+			version: "1.0.0",
+			description: "Authentication Portal API",
+		},
+		servers: [
+			{
+				url: "https://login-portal-app.herokuapp.com/api/user",
+			},
+		],
+	},
+	apis: ["./routes/*.js"],
+};
+
+const specs = swaggerJsDoc(options);
+
 const app = express();
 const PORT = process.env.PORT || 80;
 
 app.use(bodyParser.urlencoded({extended: false})); //
 app.use(bodyParser.json());
-// app.use(passport.initialize());
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 app.use(cors());//
 
 // routes
